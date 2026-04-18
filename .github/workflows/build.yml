@@ -9,17 +9,17 @@ jobs:
       fail-fast: false
     runs-on: ubuntu-latest
     permissions:
-      contents: read
+      contents: write
 
     steps:
       - name: Build Kernel
         uses: dabao1955/kernel_build_action@main
         with:
-          kernel-url: https://github.com/AcmeUI-Devices/android_kernel_xiaomi_cas
+          kernel-url: https://github.com/jedld/kernel_samsung_gtexslte.git
           kernel-dir: msm-4.19
-          kernel-branch: taffy
-          config: cas_defconfig
-          arch: arm64
+          kernel-branch: master
+          config: cadefconfig
+          arch: arm
           aosp-gcc: true
           aosp-clang: true
           ksu: true
