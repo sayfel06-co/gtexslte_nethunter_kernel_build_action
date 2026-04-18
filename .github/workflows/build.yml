@@ -5,26 +5,31 @@ on:
 
 jobs:
   Build-Kernel:
+   name: Proses Perakitan Kernel
     strategy:
       fail-fast: false
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
 
     steps:
+      - name: Checkout repository
+      - uses: actions/checkout@v4
+      
       - name: Build Kernel
-        uses: dabao1955/kernel_build_action@main
+      - uses: dabao1955/kernel_build_action@main
         with:
-          kernel-url: https://github.com/AcmeUI-Devices/android_kernel_xiaomi_cas
-          kernel-dir: msm-4.19
-          kernel-branch: taffy
-          config: cas_defconfig
-          arch: arm64
+          kernel-url: https://github.com/jedld/kernel_samsung_gtexsle
+          kernel-branch: master
+          config: gtexslte_defconfig
+          arch: arm
           aosp-gcc: true
           aosp-clang: true
-          ksu: true
-          ksu-version: main
-          android-version: 12
+        
+          android-version: 7.1
           aosp-clang-version: r383902
-          disable-lto: true
+          
           anykernel3: true
+          nethunter: true
+          nethunter-patch: true
+          
+          release: true
+         access-token: ${{  secrets.GITHUB_TOKEN  }}
